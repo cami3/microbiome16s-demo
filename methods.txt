@@ -1,0 +1,29 @@
+Downstream analyses were performed with Microbiome16S v1.0.0 (R engine 1.0.0; R version 4.6.1 (2026-06-24)). Features classified as unassigned, mitochondrial or chloroplast were removed (45 features, 1.81% of reads). Samples were rarefied without replacement to 1,328 reads per sample (random seed 42); 27 of 34 samples were retained (7 below the rarefaction depth were excluded). Samples were compared across 4 groups of 'body-site' (gut, left palm, right palm, tongue). Rarefied data were used for composition, alpha and beta diversity; unrarefied counts of the retained samples were used for differential abundance, regression and correlation analyses.
+
+Alpha diversity (observed features, Shannon index, Gini-Simpson index, Pielou's evenness, Faith's phylogenetic diversity) was compared between groups with the Kruskal-Wallis test followed by Dunn's post-hoc test with Benjamini-Hochberg (BH) correction; effect sizes are reported as eta-squared (eta2[H]).
+
+Relative abundances were summarised at phylum and genus level. Taxa present in at least 10% of samples were compared between groups with the Kruskal-Wallis test, with BH correction across taxa.
+
+Beta diversity was quantified with the Jaccard distance (presence/absence), the Bray-Curtis dissimilarity, unweighted UniFrac and weighted UniFrac. UniFrac distances were computed on the rooted phylogenetic tree after resolving polytomies into zero-length dichotomies (ape::multi2di). Community structure was visualised by principal coordinates analysis (PCoA) and non-metric multidimensional scaling (NMDS, Jaccard (presence/absence)). Group differences were tested by PERMANOVA (vegan::adonis2, 999 permutations), and homogeneity of multivariate dispersion with betadisper and a permutation test. Pairwise PERMANOVA was performed for every pair of groups with BH correction.
+
+Differential abundance was assessed at genus level for genera present in at least 10% of samples, using two complementary approaches: the Kruskal-Wallis test on relative abundances and on centred log-ratio (CLR; pseudocount 0.5) transformed counts, each with BH correction across genera. Genera significant in both approaches (q < 0.05) were considered consensus hits; Dunn's test (BH) on CLR values identified the differing pairs of groups.
+
+The association between individual genera and group membership (left palm vs gut) was explored with univariate logistic regression on standardised CLR abundances (odds ratio per 1 SD, 95% Wald confidence intervals, BH-adjusted p-values); models showing complete or quasi-complete separation were flagged as unreliable. Discriminative performance was estimated as the area under the ROC curve with 5-fold stratified cross-validation repeated 20 times. Because candidate genera were selected on the full dataset, these AUC values are exploratory and may be optimistic.
+
+Spearman correlations between CLR-transformed abundances of the 30 most abundant genera and numeric metadata (month, day, days-since-experiment-start) were computed, with BH false discovery rate correction across all genus-variable pairs.
+
+Statistical significance was set at a BH-adjusted p (q) < 0.05.
+
+References
+McMurdie PJ, Holmes S (2013). phyloseq: an R package for reproducible interactive analysis and graphics of microbiome census data. PLoS ONE 8:e61217.
+Oksanen J et al. vegan: Community Ecology Package. R package. https://CRAN.R-project.org/package=vegan
+Paradis E, Schliep K (2019). ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R. Bioinformatics 35:526-528.
+Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.
+Anderson MJ (2001). A new method for non-parametric multivariate analysis of variance. Austral Ecology 26:32-46.
+Anderson MJ (2006). Distance-based tests for homogeneity of multivariate dispersions. Biometrics 62:245-253.
+Lozupone C, Knight R (2005). UniFrac: a new phylogenetic method for comparing microbial communities. Appl Environ Microbiol 71:8228-8235.
+Faith DP (1992). Conservation evaluation and phylogenetic diversity. Biological Conservation 61:1-10.
+Dunn OJ (1964). Multiple comparisons using rank sums. Technometrics 6:241-252.
+Benjamini Y, Hochberg Y (1995). Controlling the false discovery rate. J R Stat Soc B 57:289-300.
+Aitchison J (1982). The statistical analysis of compositional data. J R Stat Soc B 44:139-177.
+Gloor GB et al. (2017). Microbiome datasets are compositional: and this is not optional. Front Microbiol 8:2224.
